@@ -1,6 +1,1 @@
-builtInMod/
-eventProg/
-moduleHandling/
-notes/
-npmPrac/
-.env
+node_modules/
