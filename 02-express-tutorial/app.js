@@ -1,31 +1,10 @@
-const http = require("http");
+const express = require("express");
+const app = express();
 
-// server takes a call back which is invoked everytime the user makes a request
-const server = http.createServer((req, res) => {
-  const { readFileSync } = require("fs");
-
-  // get all files
-  const homePage = readFileSync("./index.html");
-  const navBar = readFileSync("./navbar-app/index.html");
-
-  const url = req.url;
-
-  if (url == "/") {
-    res.writeHead(200, { "content-type": "text/html" });
-    res.write(homePage);
-    res.write(navBar);
-    res.end();
-  } else if (url === "/about") {
-    res.writeHead(200, { "content-type": "text/html" });
-    res.write(`<h1> About page </h1>`);
-    res.end();
-  }
-  // 404
-  else {
-    res.writeHead(404, { "content-type": "text/html" });
-    res.write(`<h1>Shit</h1>`);
-    res.end();
-  }
+app.get("/", (req, res) => {
+  res.send("Home Page");
 });
 
-server.listen(5000);
+app.listen(5000, () => {
+  console.log("server is listening o port 5000");
+});
