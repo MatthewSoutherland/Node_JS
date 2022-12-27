@@ -6,12 +6,14 @@ const server = http.createServer((req, res) => {
 
   // get all files
   const homePage = readFileSync("./index.html");
+  const navBar = readFileSync("./navbar-app/index.html");
 
   const url = req.url;
 
   if (url == "/") {
     res.writeHead(200, { "content-type": "text/html" });
     res.write(homePage);
+    res.write(navBar);
     res.end();
   } else if (url === "/about") {
     res.writeHead(200, { "content-type": "text/html" });
