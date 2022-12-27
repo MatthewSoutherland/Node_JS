@@ -1,6 +1,12 @@
 const authorize = (req, res, next) => {
-  console.log("authorize");
-  next();
+  const { user } = req.query;
+  if (user === "john") {
+    req.user = { name: "john", id: 3 };
+    next();
+  } else {
+    res.status(401).send("Unauthorized");
+  }
 };
+// normally you would get the user token and query the database. this is just an example.
 
 module.exports = authorize;
